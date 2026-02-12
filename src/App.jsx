@@ -4,14 +4,14 @@
  */
 import { useState } from 'react';
 import '../profile.css';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import PersonalProfile from './components/PersonalProfile';
-import OrganizationProfile from './components/OrganizationProfile';
-import AIIntegrations from './components/AIIntegrations';
-import SecurityAccess from './components/SecurityAccess';
-import BillingPlan from './components/BillingPlan';
-import DangerZone from './components/DangerZone';
+import Sidebar from '../frontend/src/app/components/Sidebar';
+import Header from '../frontend/src/app/components/Header';
+import PersonalProfile from '../frontend/src/app/components/PersonalProfile';
+import OrganizationProfile from '../frontend/src/app/components/OrganizationProfile';
+import AIIntegrations from '../frontend/src/app/components/AIIntegrations';
+import SecurityAccess from '../frontend/src/app/components/SecurityAccess';
+import BillingPlan from '../frontend/src/app/components/BillingPlan';
+import DangerZone from '../frontend/src/app/components/DangerZone';
 
 
 function App() {
