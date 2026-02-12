@@ -1,6 +1,9 @@
+/**
+ * Security & Access Component
+ * Handles security settings like 2FA, active sessions, and escalation rules.
+ */
 import { useState } from "react";
 import { Lock, Smartphone, Laptop } from "lucide-react";
-import "../../profile.css";
 
 export default function SecurityAccess() {
     const [twoFactor, setTwoFactor] = useState(false);

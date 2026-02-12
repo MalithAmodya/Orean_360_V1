@@ -1,3 +1,7 @@
+/**
+ * Sidebar Component
+ * Displays navigation menu items and handles tab switching.
+ */
 import {
     User,
     Building2,
@@ -6,7 +10,6 @@ import {
     CreditCard,
     AlertTriangle
 } from "lucide-react";
-import "../../profile.css";
 
 export default function Sidebar({ activeTab, setActiveTab }) {
     const menuItems = [

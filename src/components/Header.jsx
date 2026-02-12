@@ -1,5 +1,8 @@
+/**
+ * Header Component
+ * Displays breadcrumb navigation and user actions (notifications, profile).
+ */
 import { Mail, Bell } from "lucide-react";
-import "../../profile.css";
 
 export default function Header({ userAvatar, breadcrumbs }) {
     return (

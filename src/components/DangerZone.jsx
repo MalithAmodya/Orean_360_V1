@@ -1,6 +1,9 @@
 import { AlertTriangle } from "lucide-react";
-import "../../profile.css";
 
+/**
+ * Danger Zone Component
+ * Contains critical actions like leaving the organization or deactivating the account.
+ */
 export default function DangerZone() {
     return (
         <div className="profile-section">

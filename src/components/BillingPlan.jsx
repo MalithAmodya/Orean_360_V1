@@ -1,5 +1,9 @@
-import "../../profile.css";
 
+/**
+ * Billing & Plan Component
+ * Displays subscription details, usage limits, and billing options.
+ * Restricted to admins.
+ */
 export default function BillingPlan() {
     const isAdmin = true; // Mock
 

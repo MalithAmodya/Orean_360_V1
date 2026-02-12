@@ -1,4 +1,9 @@
+/**
+ * Main application component.
+ * Manages the state for the profile page, including active tabs and user/org data.
+ */
 import { useState } from 'react';
+import '../profile.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import PersonalProfile from './components/PersonalProfile';

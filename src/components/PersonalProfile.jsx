@@ -1,6 +1,9 @@
+/**
+ * Personal Profile Component
+ * Allows users to view and edit their personal details and avatar.
+ */
 import { useRef } from "react";
 import { Lock, Camera } from "lucide-react";
-import "../../profile.css";
 
 export default function PersonalProfile({ user, onUpdate }) {
   const fileInputRef = useRef(null);
