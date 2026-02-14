@@ -2,63 +2,159 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex min-h-screen flex-col items-center bg-[#030712] text-white p-8 font-sans">
+
+      {/*navbar goes here*/}
+      <nav className="w-full max-w-6xl flex flex-wrap items-center justify-between py-6 px-8 mb-12">
+        <div className="flex items-center gap-2">
+          {/* Logo placeholder */}
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-400 to-purple-500"></div>
+          <span className="font-bold text-lg tracking-wide hidden sm:block">Orean</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <ul className="flex flex-wrap gap-8 text-sm font-medium text-gray-300">
+          <li><a href="#" className="hover:text-white transition-colors">Dashboard</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Workflow</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Analytics</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">GEO Studio</a></li>
+          <li><a href="#" className="hover:text-white transition-colors">Calendar</a></li>
+        </ul>
+
+        <div className="flex items-center gap-4">
+          {/* Profile/Notification Placeholders */}
+          <div className="w-8 h-8 bg-gray-700/50 rounded-lg flex items-center justify-center">
+            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          </div>
+          <div className="w-10 h-10 bg-yellow-100 rounded-full border-2 border-gray-800"></div>
         </div>
+      </nav>
+
+      <main className="flex w-full max-w-6xl gap-8 relative">
+
+        {/* Main Content Area - Create Post */}
+        <div className="flex-1 flex flex-col gap-6">
+
+          {/* Create Post Header & Inputs */}
+          <div className="bg-[#0B1221] border border-gray-800 rounded-2xl p-6 shadow-xl relative overflow-hidden ">
+            <h2 className="text-xl font-semibold text-white ">Create Post</h2>
+            <br></br>
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 text-sm text-gray-400 ml-4">
+                  <span>Sharing to:</span>
+                  {/* insert social media icons later */}
+                  <div className="flex items-center gap-2">
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="facebook" className="peer sr-only " />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">F</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="instagram" className="peer sr-only" defaultChecked />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">I</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="tiktok" className="peer sr-only" />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">T</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="twitter" className="peer sr-only" defaultChecked />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">T</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="whatsapp" className="peer sr-only" defaultChecked />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">W</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="youtube" className="peer sr-only" defaultChecked />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">Y</div>
+                    </label>
+                    <label className="cursor-pointer relative group">
+                      <input type="checkbox" name="telegram" className="peer sr-only" defaultChecked />
+                      <div className="w-8 h-8 rounded-full bg-black border border-gray-600 flex items-center justify-center peer-checked:ring-2 ring-white transition-all opacity-50 peer-checked:opacity-100">T</div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <select name="project-type" id="project-type" className="appearance-none bg-[#1F2937] text-gray-300 text-sm px-4 py-2 pr-8 rounded-full focus:outline-none focus:ring-1 focus:ring-gray-500 border border-gray-700">
+                  <option value="1">Project Type</option>
+                  <option value="2">Project Type</option>
+                  <option value="3">Project Type</option>
+                </select>
+                <svg className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </div>
+            </div>
+
+            {/* description area */}
+            <div className="w-full h-32 bg-transparent border border-gray-800 rounded-lg p-4 text-gray-400 text-sm mb-4 font-mono">
+              <p>When the magic can't fit into one night... we make another</p>
+              <p>Sky Light Fest : The Original - DAY 02 22nd February | Rock House, Piliyandala.</p>
+            </div>
+          </div>
+
+          {/* content uploader */}
+          <div className="bg-[#0B1221] border border-gray-800 rounded-2xl p-6 h-48 flex items-center gap-4">
+            {/* Image Placeholder */}
+            <div className="h-full aspect-square bg-[#1a1a1a] rounded-lg overflow-hidden relative group">
+              {/* Placeholder for uploaded image */}
+              <div className="absolute inset-0 flex items-center justify-center text-xs text-center text-gray-500 p-2 border border-gray-700 m-2 rounded border-dashed">
+                Image Preview
+              </div>
+            </div>
+
+            {/* Upload Placeholder */}
+            <div className="h-32 w-32 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-700 text-gray-500">
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} /></svg>
+            </div>
+
+          </div>
+
+          <div className="relative">
+            <select name="project-type" id="project-type" className="appearance-none bg-[#1F2937] text-gray-300 text-sm px-4 py-2 pr-8 rounded-full focus:outline-none focus:ring-1 focus:ring-gray-500 border border-gray-700">
+              <option value="1">Settings</option>
+              <option value="2">Settings</option>
+              <option value="3">Settings</option>
+            </select>
+            <svg className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+          </div>
+
+          {/* Posting Schedule */}
+          <div className="bg-[#0B1221] border border-gray-800 rounded-2xl p-6 mt-auto">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-white">Posting Schedule</h3>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <span>When to post</span>
+                <span className="text-xs bg-gray-800 px-2 py-0.5 rounded text-gray-300">AI powered schedule</span>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input type="radio" name="schedule" className="w-5 h-5 accent-cyan-500 bg-transparent" defaultChecked />
+                  <span className="text-gray-300">Post Now</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input type="radio" name="schedule" className="w-5 h-5 accent-cyan-500 bg-transparent" />
+                  <span className="text-gray-300">Schedule</span>
+                  <span className="ml-auto text-gray-500 text-sm">--/--/--</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input type="radio" name="schedule" className="w-5 h-5 accent-cyan-500 bg-transparent" />
+                  <span className="text-gray-300">Add to Queue</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/*insert vidath's stuff*/}
+        <div className="hidden lg:block w-80 bg-[#0B1221] border border-gray-800 rounded-2xl p-6 opacity-50">
+          <div className="text-center text-gray-500 mt-20">Preview</div>
+        </div>
+
       </main>
     </div>
   );
