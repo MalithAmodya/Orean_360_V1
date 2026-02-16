@@ -1,3 +1,5 @@
+import { Facebook, Instagram, Linkedin } from "lucide-react";
+
  
 
 export default function Signup() {
@@ -46,6 +48,33 @@ export default function Signup() {
                         placeholder="Workplace Name"
                         className="w-full px-4 py-2 border rounded"
                         />
+
+                        <div className="flex items-center gap-4 my-6 text-white/60">
+                            <div className="flex-1 h-[1px] bg-white/30" />
+                            <span className="text-sm">or</span>
+                            <div className="flex-1 h-[1px] bg-white/30" />
+                        </div>
+
+                        <div className="flex justify-center gap-6 my-4">
+
+                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
+                                <Facebook size={20} />
+                            </div>
+
+                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
+                                <span className="font-bold text-lg">G</span>
+                            </div>
+
+                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
+                                <Instagram size={20} />
+                            </div>
+
+                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
+                                <Linkedin size={20} />
+                            </div>
+
+                        </div>
+
 
                         <button
                         type="submit"
