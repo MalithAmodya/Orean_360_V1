@@ -1,0 +1,41 @@
+'use client';
+
+export type Platform = 'instagram' | 'facebook' | 'twitter' | 'tiktok' | 'youtube' | 'whatsapp' | 'telegram';
+
+interface PlatformSelectorProps {
+    selectedPlatform: Platform;
+    onSelectPlatform: (platform: Platform) => void;
+}
+
+const platforms: { id: Platform; label: string; icon: string }[] = [
+    { id: 'instagram', label: 'Instagram', icon: 'I' },
+    { id: 'facebook', label: 'Facebook', icon: 'F' },
+    { id: 'twitter', label: 'Twitter', icon: 'X' },
+    { id: 'tiktok', label: 'TikTok', icon: 'T' },
+    { id: 'youtube', label: 'YouTube', icon: 'Y' },
+    { id: 'whatsapp', label: 'WhatsApp', icon: 'W' },
+    { id: 'telegram', label: 'Telegram', icon: 'T' },
+];
+
+export default function PlatformSelector({ selectedPlatform, onSelectPlatform }: PlatformSelectorProps) {
+    return (
+        <div className="flex items-center gap-2 mb-4 overflow-x-auto pb-2">
+            {platforms.map((platform) => (
+                <button
+                    key={platform.id}
+                    onClick={() => onSelectPlatform(platform.id)}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${selectedPlatform === platform.id
+                            ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/30'
+                            : 'bg-gray-800/50 text-gray-400 hover:bg-gray-800 hover:text-gray-300'
+                        }`}
+                >
+                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${selectedPlatform === platform.id ? 'bg-white/20' : 'bg-gray-700'
+                        }`}>
+                        {platform.icon}
+                    </span>
+                    <span>{platform.label}</span>
+                </button>
+            ))}
+        </div>
+    );
+}

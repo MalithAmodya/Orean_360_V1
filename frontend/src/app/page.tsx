@@ -1,6 +1,45 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import PlatformSelector, { Platform } from '@/components/PlatformSelector';
+import InstagramPreview from '@/components/previews/InstagramPreview';
+import FacebookPreview from '@/components/previews/FacebookPreview';
+import TwitterPreview from '@/components/previews/TwitterPreview';
+import TikTokPreview from '@/components/previews/TikTokPreview';
+import YouTubePreview from '@/components/previews/YouTubePreview';
+import WhatsAppPreview from '@/components/previews/WhatsAppPreview';
+import TelegramPreview from '@/components/previews/TelegramPreview';
 
 export default function Home() {
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform>('instagram');
+  const [postCaption, setPostCaption] = useState("When the magic can't fit into one night... we make another\nSky Light Fest : The Original - DAY 02 22nd February | Rock House, Piliyandala.\n\nTickets available now !!!\nVisit www.tickets.lk to get your tickets.");
+
+  const renderPreview = () => {
+    const props = {
+      caption: postCaption,
+      imageUrl: undefined,
+    };
+
+    switch (selectedPlatform) {
+      case 'instagram':
+        return <InstagramPreview {...props} />;
+      case 'facebook':
+        return <FacebookPreview {...props} />;
+      case 'twitter':
+        return <TwitterPreview {...props} />;
+      case 'tiktok':
+        return <TikTokPreview {...props} />;
+      case 'youtube':
+        return <YouTubePreview {...props} title={postCaption.split('\n')[0]} />;
+      case 'whatsapp':
+        return <WhatsAppPreview {...props} />;
+      case 'telegram':
+        return <TelegramPreview {...props} />;
+      default:
+        return <InstagramPreview {...props} />;
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-[#030712] text-white p-8 font-sans">
 
@@ -90,7 +129,8 @@ export default function Home() {
             <textarea
               className="w-full h-32 bg-transparent border border-gray-800 rounded-lg p-4 text-gray-300 text-sm mb-4 resize-none focus:outline-none focus:ring-1 focus:ring-gray-600"
               placeholder="What's on your mind?"
-              defaultValue="When the magic can't fit into one night... we make another&#10;Sky Light Fest : The Original - DAY 02 22nd February | Rock House, Piliyandala.&#10;&#10;Tickets available now !!!&#10;Visit www.tickets.lk to get your tickets."
+              value={postCaption}
+              onChange={(e) => setPostCaption(e.target.value)}
             />
           </div>
 
@@ -174,54 +214,15 @@ export default function Home() {
             </svg>
           </div>
 
-          {/* Instagram-style Preview */}
-          <div className="bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-700">
-            {/* Preview Header */}
-            <div className="flex items-center gap-2 p-3 border-b border-gray-800">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center">
-                <div className="w-7 h-7 rounded-full bg-[#1a1a1a]"></div>
-              </div>
-              <span className="text-white text-sm font-medium">itlife</span>
-              <svg className="w-1 h-1 fill-gray-500 ml-auto" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" /></svg>
-              <svg className="w-1 h-1 fill-gray-500" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" /></svg>
-              <svg className="w-1 h-1 fill-gray-500" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" /></svg>
-            </div>
+          {/* Platform Selector */}
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={setSelectedPlatform}
+          />
 
-            {/* Post Image */}
-            <div className="aspect-square bg-gradient-to-br from-red-900 to-orange-800 relative flex items-center justify-center">
-              <div className="text-center text-white p-8">
-                <div className="text-6xl font-bold mb-2">22</div>
-                <div className="text-sm">February</div>
-              </div>
-            </div>
-
-            {/* Engagement Icons */}
-            <div className="flex items-center gap-4 p-3 border-b border-gray-800">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-              <svg className="w-6 h-6 text-white ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-              </svg>
-            </div>
-
-            {/* Caption */}
-            <div className="p-3 text-xs text-gray-300 leading-relaxed">
-              <span className="font-semibold text-white">itlife</span> When the magic can't fit into one night... we make another<br />
-              Sky Light Fest : The Original - DAY 02<br />
-              22nd February | Rock House, Piliyandala.<br /><br />
-              Tickets available now !!!<br />
-              Visit <span className="text-blue-400">www.tickets.lk</span> to get your tickets.<br /><br />
-              <span className="text-blue-400">#SkyLightFest #MakeAWish</span><br />
-              <span className="text-blue-400">#LanternFestival</span><br />
-              <span className="text-blue-400">#WhereTheNightGlowsWithMagic</span>
-            </div>
+          {/* Dynamic Platform Preview */}
+          <div className="transition-all duration-300 ease-in-out">
+            {renderPreview()}
           </div>
         </div>
 
