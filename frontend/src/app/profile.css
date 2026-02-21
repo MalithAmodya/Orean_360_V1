@@ -105,6 +105,31 @@ body {
   background-color: var(--bg-dark);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background-color: var(--border-color);
+  transform: translateX(-2px);
+}
+
 .breadcrumbs {
   color: var(--text-primary);
   font-size: 25px;

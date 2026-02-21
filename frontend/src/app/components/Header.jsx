@@ -2,13 +2,26 @@
  * Header Component
  * Displays breadcrumb navigation and user actions (notifications, profile).
  */
-import { Mail, Bell } from "lucide-react";
+import { Mail, Bell, ChevronLeft } from "lucide-react";
 
-export default function Header({ userAvatar, breadcrumbs }) {
+export default function Header({ userAvatar, breadcrumbs, onBack }) {
+    const handleBack = () => {
+        if (onBack) {
+            onBack();
+        } else {
+            window.history.back();
+        }
+    };
+
     return (
         <header className="top-header">
-            <div className="breadcrumbs">
-                {breadcrumbs}
+            <div className="header-left">
+                <button className="back-btn" onClick={handleBack} aria-label="Go back">
+                    <ChevronLeft size={24} />
+                </button>
+                <div className="breadcrumbs">
+                    {breadcrumbs}
+                </div>
             </div>
             <div className="header-actions">
                 <button className="icon-btn">
