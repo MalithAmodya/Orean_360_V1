@@ -1,7 +1,3 @@
-/**
- * AI & Integrations Component
- * Manages AI settings, preferences, and connected third-party platforms.
- */
 import { useState } from "react";
 import { CheckCircle, AlertCircle, RefreshCw, Lock } from "lucide-react";
 

@@ -2,17 +2,11 @@
   --bg-dark: #213555;
   --bg-card: #3E5879;
   --text-primary: #F5EFE7;
-  --text-secondary: #D8C4B6;
-  /* Warm sand for secondary/accent text? Or maybe a lighter grey? Let's use Sand for now or a muted version */
+  --text-secondary: #ffffff;
   --text-muted: #A0AAB4;
-  /* Soft grey-blue for less important text */
   --accent-gold: #D8C4B6;
-  /* Warm Sand */
   --border-color: #4B5563;
-  /* Slightly lighter than bg-card */
   --input-bg: #2C3E50;
-  /* Darker than card, lighter than bg-dark? Or just bg-dark */
-  --nasty-red: #711212ce;
 }
 
 * {
@@ -76,13 +70,12 @@ body {
 }
 
 .nav-item.danger {
-  color: #ca1313;
+  color: var(--text-primary);
 }
 
 .nav-item.danger:hover,
 .nav-item.danger.active {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #ca1313;
+  color: #ffffff;
 }
 
 /* Main Content */
@@ -101,7 +94,6 @@ body {
   justify-content: space-between;
   padding: 14px 22px;
   border-bottom: none;
-  /* Removed as requested */
   background-color: var(--bg-dark);
 }
 
@@ -150,15 +142,6 @@ body {
   position: relative;
 }
 
-.notification-dot {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 8px;
-  height: 8px;
-  background-color: var(--nasty-red);
-  border-radius: 50%;
-}
 
 .user-avatar-sm {
   width: 40px;

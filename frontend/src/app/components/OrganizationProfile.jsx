@@ -1,8 +1,3 @@
-/**
- * Organization Profile Component
- * Manages organization details, team roles, and settings.
- * Includes admin-only edit capabilities.
- */
 import { useState, useRef } from "react";
 import { Lock, Camera } from "lucide-react";
 

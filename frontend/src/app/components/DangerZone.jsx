@@ -1,19 +1,15 @@
 import { AlertTriangle } from "lucide-react";
 
-/**
- * Danger Zone Component
- * Contains critical actions like leaving the organization or deactivating the account.
- */
 export default function DangerZone() {
     return (
         <div className="profile-section">
-            <h1 className="page-title" style={{ color: '#a51919ff' }}>Danger Zone</h1>
+            <h1 className="page-title" style={{ color: 'var(--text-primary)' }}>Danger Zone</h1>
             <p className="page-subtitle">Proceed with caution</p>
 
-            <div className="profile-card" style={{ flexDirection: 'column', gap: '24px', border: '2px solid #EF4444' }}>
+            <div className="profile-card" style={{ flexDirection: 'column', gap: '24px' }}>
 
-                <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', padding: '16px', background: '#ba8989ff', borderRadius: '8px' }}>
-                    <AlertTriangle color="#a51919ff" size={24} style={{ flexShrink: 0 }} />
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', padding: '16px', background: '#834148ff', borderRadius: '8px' }}>
+                    <AlertTriangle color="#ffffffff" size={24} style={{ flexShrink: 0 }} />
                     <div>
                         <h4 style={{ color: '#f9f4f4ff', marginBottom: '4px', fontWeight: 600 }}>Proceed with Caution</h4>
                         <p style={{ fontSize: '14px', color: '#f9f4f4ff' }}>

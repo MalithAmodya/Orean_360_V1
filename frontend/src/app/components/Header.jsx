@@ -1,7 +1,3 @@
-/**
- * Header Component
- * Displays breadcrumb navigation and user actions (notifications, profile).
- */
 import { Mail, Bell, ChevronLeft } from "lucide-react";
 
 export default function Header({ userAvatar, breadcrumbs, onBack }) {
@@ -26,7 +22,6 @@ export default function Header({ userAvatar, breadcrumbs, onBack }) {
             <div className="header-actions">
                 <button className="icon-btn">
                     <Mail size={20} />
-                    <span className="notification-dot"></span>
                 </button>
                 <button className="icon-btn">
                     <Bell size={20} />

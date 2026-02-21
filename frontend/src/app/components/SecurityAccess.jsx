@@ -1,7 +1,3 @@
-/**
- * Security & Access Component
- * Handles security settings like 2FA, active sessions, and escalation rules.
- */
 import { useState } from "react";
 import { Lock, Smartphone, Laptop } from "lucide-react";
 
@@ -66,7 +62,7 @@ export default function SecurityAccess() {
                             <p style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Colombo, Sri Lanka • 2 hours ago</p>
                         </div>
                     </div>
-                    <button className="btn btn-secondary" style={{ padding: '6px 16px', fontSize: '12px', color: 'var(--nasty-red)', borderColor: 'var(--nasty-red)' }}>
+                    <button className="btn btn-secondary" style={{ padding: '6px 16px', fontSize: '12px' }}>
                         Revoke
                     </button>
                 </div>

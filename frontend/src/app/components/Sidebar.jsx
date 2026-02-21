@@ -1,7 +1,3 @@
-/**
- * Sidebar Component
- * Displays navigation menu items and handles tab switching.
- */
 import {
     User,
     Building2,
