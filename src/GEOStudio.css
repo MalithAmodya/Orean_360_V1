@@ -18,9 +18,40 @@
   background: var(--geo-bg);
   color: var(--geo-text-primary);
   font-family: var(--geo-font-family);
-  padding: 2rem;
+  padding: 3rem 2rem;
+  /* Increased vertical padding for breathing room */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
+
+.geo-studio-header {
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.geo-studio-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(to right, var(--geo-neon-blue), var(--geo-neon-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Refinement for Step 8 */
+:root {
+  --geo-glass-bg: rgba(15, 23, 42, 0.65);
+  --geo-glass-border: rgba(255, 255, 255, 0.08);
+  --geo-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+
 
 .geo-studio-main {
   display: grid;
@@ -41,12 +72,31 @@
 }
 
 .glass-effect {
-  background: var(--geo-card-bg);
+  background: var(--geo-glass-bg);
   backdrop-filter: var(--geo-glass-blur);
-  border: 1px solid var(--geo-border);
+  -webkit-backdrop-filter: var(--geo-glass-blur);
+  border: 1px solid var(--geo-glass-border);
   border-radius: 1.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--geo-glass-shadow);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.glass-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
 
 @media (max-width: 1100px) {
   .geo-studio-main {

@@ -39,15 +39,22 @@ const GEOStudio = () => {
 
   return (
     <div className="geo-studio-container">
+      <header className="geo-studio-header">
+        <h1>GEO Studio</h1>
+        <p style={{ color: 'var(--geo-text-secondary)', marginTop: '0.5rem' }}>
+          Input & Configuration for Generative Engine Optimization
+        </p>
+      </header>
       <main className="geo-studio-main">
-        <LeftPanel 
-          formData={formData} 
-          setFormData={setFormData} 
+
+        <LeftPanel
+          formData={formData}
+          setFormData={setFormData}
           onRun={handleRunAnalysis}
           isAnalyzing={isAnalyzing}
         />
-        <RightPanel 
-          results={results} 
+        <RightPanel
+          results={results}
           isAnalyzing={isAnalyzing}
         />
       </main>
