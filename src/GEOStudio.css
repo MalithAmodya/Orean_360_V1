@@ -1,0 +1,50 @@
+/* GEO Studio Scoped Styles */
+:root {
+  --geo-bg: #0a0e14;
+  --geo-card-bg: rgba(255, 255, 255, 0.05);
+  --geo-border: rgba(255, 255, 255, 0.1);
+  --geo-accent: #3b82f6; /* Blue accent */
+  --geo-text-primary: #ffffff;
+  --geo-text-secondary: #94a3b8;
+  --geo-neon-blue: #00d2ff;
+  --geo-neon-purple: #9d50bb;
+  --geo-glass-blur: blur(12px);
+  --geo-font-family: 'Inter', sans-serif;
+}
+
+.geo-studio-container {
+  min-height: 100vh;
+  background: var(--geo-bg);
+  color: var(--geo-text-primary);
+  font-family: var(--geo-font-family);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.geo-studio-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Glassmorphism Fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .glass-effect {
+    background: #1e293b;
+  }
+}
+
+.glass-effect {
+  background: var(--geo-card-bg);
+  backdrop-filter: var(--geo-glass-blur);
+  border: 1px solid var(--geo-border);
+  border-radius: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .geo-studio-main {
+    grid-template-columns: 1fr;
+  }
+}
