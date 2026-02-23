@@ -83,6 +83,7 @@ const GEOStudio = () => {
           results={results}
           isAnalyzing={isAnalyzing}
         />
+
       </main>
     </div>
   );
