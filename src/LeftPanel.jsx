@@ -5,9 +5,10 @@ import GlassCard from './components/ui/GlassCard';
 import RunButton from './components/ui/RunButton';
 import './LeftPanel.css';
 
-const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
+const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing, loadingText }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [showAdvanced, setShowAdvanced] = useState(false);
+
 
     const handleTextChange = (e) => {
         const value = e.target.value;
@@ -276,8 +277,10 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
                     onClick={onRun}
                     isAnalyzing={isAnalyzing}
                     disabled={!formData.keyPoints.trim() && !formData.attachedFile}
+                    loadingText={loadingText}
                 />
             </div>
+
 
         </aside>
     );

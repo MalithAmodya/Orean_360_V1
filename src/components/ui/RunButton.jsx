@@ -2,7 +2,7 @@ import React from 'react';
 import { Sparkles, Loader2 } from 'lucide-react';
 import './RunButton.css';
 
-const RunButton = ({ onClick, isAnalyzing, disabled }) => {
+const RunButton = ({ onClick, isAnalyzing, disabled, loadingText }) => {
     return (
         <button
             className={`geo-run-button ${isAnalyzing ? 'analyzing' : ''}`}
@@ -13,7 +13,7 @@ const RunButton = ({ onClick, isAnalyzing, disabled }) => {
                 {isAnalyzing ? (
                     <>
                         <Loader2 className="spinner" size={20} />
-                        <span>Analyzing Content...</span>
+                        <span className="loading-text-transition">{loadingText || "Analyzing Content..."}</span>
                     </>
                 ) : (
                     <>
@@ -21,6 +21,7 @@ const RunButton = ({ onClick, isAnalyzing, disabled }) => {
                         <span>Run GEO Analysis</span>
                     </>
                 )}
+
             </div>
             <div className="button-glow"></div>
         </button>
