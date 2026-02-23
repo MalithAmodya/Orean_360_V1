@@ -49,18 +49,32 @@ const GEOStudio = () => {
 
   const handleRunAnalysis = () => {
     setIsAnalyzing(true);
-    // Simulation of GEO Analysis
     setTimeout(() => {
       setIsAnalyzing(false);
       setResults({
         best: {
+          id: 'best',
           score: 92,
-          content: "Optimized content goes here...",
+          content: "Elevate your strategy with Generative Engine Optimization. Our comprehensive platform adapts seamlessly across all channels, ensuring your content not only ranks but consistently engages your target audience.",
           breakdown: { seo: 95, engagement: 90, readability: 88, platform: 92 }
         },
-        alternatives: []
+        alternatives: [
+          {
+            id: 'alt1',
+            score: 84,
+            content: "Looking to boost your digital presence? Discover how GEO Studio leverages deep neural-insights to craft performing content across platforms. Get ahead of the curve and optimize natively today.",
+            breakdown: { seo: 88, engagement: 82, readability: 85, platform: 80 }
+          },
+          {
+            id: 'alt2',
+            score: 79,
+            content: "Tired of manual content tuning? Let our Generative Engine Optimization streamline your workflow. Maximize impact, minimize effort, and reach your audience effectively.",
+            breakdown: { seo: 80, engagement: 78, readability: 83, platform: 75 }
+          }
+        ]
       });
     }, 3000);
+
   };
 
   return (
@@ -73,16 +87,20 @@ const GEOStudio = () => {
       </header>
       <main className="geo-studio-main">
 
-        <LeftPanel
-          formData={formData}
-          setFormData={setFormData}
-          onRun={handleRunAnalysis}
-          isAnalyzing={isAnalyzing}
-        />
-        <RightPanel
-          results={results}
-          isAnalyzing={isAnalyzing}
-        />
+        <div className="slide-up">
+          <LeftPanel
+            formData={formData}
+            setFormData={setFormData}
+            onRun={handleRunAnalysis}
+            isAnalyzing={isAnalyzing}
+          />
+        </div>
+        <div className="slide-up" style={{ animationDelay: '0.2s' }}>
+          <RightPanel
+            results={results}
+            isAnalyzing={isAnalyzing}
+          />
+        </div>
 
       </main>
     </div>

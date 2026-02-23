@@ -8,14 +8,26 @@ import './RightPanel.css';
 
 const RightPanel = ({ results, isAnalyzing }) => {
     const [copied, setCopied] = React.useState(false);
+    const [selectedId, setSelectedId] = React.useState('best');
 
-    const handleCopy = () => {
-        if (results?.best?.content) {
-            navigator.clipboard.writeText(results.best.content);
+    // Reset selection when new results arrive
+    React.useEffect(() => {
+        if (results) setSelectedId('best');
+    }, [results]);
+
+    const handleCopy = (text) => {
+        if (text) {
+            navigator.clipboard.writeText(text);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         }
     };
+
+    const currentVariation =
+        selectedId === 'best'
+            ? results?.best
+            : results?.alternatives?.find(alt => alt.id === selectedId);
+
 
     if (!results && !isAnalyzing) {
         return (
@@ -33,30 +45,30 @@ const RightPanel = ({ results, isAnalyzing }) => {
 
     return (
         <section className="right-panel">
-            {/* Best Variation Card */}
-            {results?.best && (
+            {/* Main Variation Card */}
+            {currentVariation && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                     <GlassCard glowColor="rgba(0, 210, 255, 0.15)">
                         <div className="best-variation-header">
                             <div className="best-variation-title">
                                 <Sparkles size={24} color="var(--geo-neon-blue)" />
-                                <h3>Best Variation</h3>
-                                <span className="best-badge">Top Pick</span>
+                                <h3>{selectedId === 'best' ? 'Best Variation' : 'Alternative Variation'}</h3>
+                                {selectedId === 'best' && <span className="best-badge">Top Pick</span>}
                             </div>
-                            <ScoreBadge score={results.best.score} size="md" />
+                            <ScoreBadge score={currentVariation.score} size="md" />
                         </div>
 
 
                         <div className="content-preview">
                             <div className="content-text">
-                                {results.best.content}
+                                {currentVariation.content}
                             </div>
                         </div>
 
-                        <BreakdownMetrics metrics={results.best.breakdown} />
+                        <BreakdownMetrics metrics={currentVariation.breakdown} />
 
                         <div className="action-buttons">
-                            <button className="icon-btn" onClick={handleCopy} title="Copy to Clipboard">
+                            <button className="icon-btn" onClick={() => handleCopy(currentVariation.content)} title="Copy to Clipboard">
                                 {copied ? <Check size={18} color="var(--geo-neon-blue)" /> : <Copy size={18} />}
                             </button>
                             <button className="icon-btn" title="Good Result">
@@ -69,25 +81,59 @@ const RightPanel = ({ results, isAnalyzing }) => {
                     </GlassCard>
 
                     {/* Alternative Variations */}
-                    <div className="alternatives-section">
-                        <h3 className="section-title">Alternative Variations</h3>
-                        <div className="alternatives-list">
-                            {[1, 2].map((alt) => (
-                                <GlassCard key={alt} style={{ padding: '1rem', cursor: 'pointer' }}>
-                                    <div className="alt-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                            <ScoreBadge score={85 - alt * 3} size="sm" />
-                                            <span style={{ fontWeight: 600, color: 'var(--geo-text-primary)' }}>Variation {alt + 1}</span>
+                    {results?.alternatives?.length > 0 && (
+                        <div className="alternatives-section">
+                            <h3 className="section-title" style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--geo-text-secondary)' }}>
+                                All Variations
+                            </h3>
+                            <div className="alternatives-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                {/* Option to go back to Best */}
+                                {selectedId !== 'best' && (
+                                    <GlassCard
+                                        style={{ padding: '1rem', cursor: 'pointer', borderColor: 'var(--geo-neon-blue)' }}
+                                        onClick={() => setSelectedId('best')}
+                                    >
+                                        <div className="alt-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                                <ScoreBadge score={results.best.score} size="sm" />
+                                                <span style={{ fontWeight: 600, color: 'var(--geo-text-primary)' }}>Best Variation</span>
+                                                <span className="best-badge" style={{ fontSize: '0.65rem' }}>Top Pick</span>
+                                            </div>
+                                            <ChevronRight size={18} color="var(--geo-neon-blue)" />
                                         </div>
-                                        <ChevronRight size={18} color="var(--geo-text-secondary)" />
-                                    </div>
-                                    <p style={{ color: 'var(--geo-text-secondary)', fontSize: '0.9rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                                        This is a placeholder for the alternative variation content. It provides a different angle or tone based on the AI generation.
-                                    </p>
-                                </GlassCard>
-                            ))}
+                                        <p style={{ color: 'var(--geo-text-secondary)', fontSize: '0.9rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                            {results.best.content}
+                                        </p>
+                                    </GlassCard>
+                                )}
+
+                                {/* Render Alternatives */}
+                                {results.alternatives.map((alt, idx) => {
+                                    if (alt.id === selectedId) return null; // Don't show current as alternative
+
+                                    return (
+                                        <GlassCard
+                                            key={alt.id}
+                                            style={{ padding: '1rem', cursor: 'pointer', transition: 'all 0.2s ease' }}
+                                            onClick={() => setSelectedId(alt.id)}
+                                        >
+                                            <div className="alt-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                                    <ScoreBadge score={alt.score} size="sm" />
+                                                    <span style={{ fontWeight: 600, color: 'var(--geo-text-primary)' }}>Variation {idx + 2}</span>
+                                                </div>
+                                                <ChevronRight size={18} color="var(--geo-text-secondary)" />
+                                            </div>
+                                            <p style={{ color: 'var(--geo-text-secondary)', fontSize: '0.9rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                                {alt.content}
+                                            </p>
+                                        </GlassCard>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
+                    )}
+
                 </div>
             )}
 
