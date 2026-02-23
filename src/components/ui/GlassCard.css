@@ -34,8 +34,31 @@
 }
 
 /* Optional hover state for cards */
+.glass-card.interactive {
+    cursor: pointer;
+}
+
 .glass-card.interactive:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
-    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(0, 210, 255, 0.1);
+    /* Subtle neon glow */
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-card.interactive::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.glass-card.interactive:hover::after {
+    opacity: 1;
 }
