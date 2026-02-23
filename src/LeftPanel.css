@@ -175,3 +175,39 @@
     background: rgba(239, 68, 68, 0.1);
     color: #ef4444;
 }
+
+/* Step 14: Dropdown Styles */
+.geo-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--geo-glass-border);
+    border-radius: 0.75rem;
+    color: var(--geo-text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    transition: all 0.3s ease;
+}
+
+.geo-select:focus {
+    outline: none;
+    border-color: var(--geo-neon-blue);
+    box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.1);
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+}

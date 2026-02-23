@@ -124,8 +124,61 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
 
                 {/* B. Campaign Settings Section */}
                 <div id="campaign-settings-config" style={{ marginTop: '2rem' }}>
-                    {/* Placeholder for Step 14 & 15 */}
+                    <h3 style={{ fontSize: '1rem', marginBottom: '1.25rem', color: 'var(--geo-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        Campaign Settings
+                    </h3>
+                    <GlassCard shadow="lg">
+                        <div className="settings-grid">
+                            <div className="input-group">
+                                <label className="input-label">Target Platform</label>
+                                <select
+                                    className="geo-select"
+                                    value={formData.platform}
+                                    onChange={(e) => setFormData({ ...formData, platform: e.target.value })}
+                                >
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="LinkedIn">LinkedIn</option>
+                                    <option value="Twitter/X">Twitter/X</option>
+                                    <option value="Blog">Blog</option>
+                                    <option value="YouTube">YouTube</option>
+                                    <option value="Facebook">Facebook</option>
+                                </select>
+                            </div>
+
+                            <div className="input-group">
+                                <label className="input-label">Tone</label>
+                                <select
+                                    className="geo-select"
+                                    value={formData.tone}
+                                    onChange={(e) => setFormData({ ...formData, tone: e.target.value })}
+                                >
+                                    <option value="Professional">Professional</option>
+                                    <option value="Friendly">Friendly</option>
+                                    <option value="Humorous">Humorous</option>
+                                    <option value="Persuasive">Persuasive</option>
+                                    <option value="Technical">Technical</option>
+                                    <option value="Inspirational">Inspirational</option>
+                                </select>
+                            </div>
+
+                            <div className="input-group" style={{ gridColumn: 'span 2' }}>
+                                <label className="input-label">Primary Goal</label>
+                                <select
+                                    className="geo-select"
+                                    value={formData.goal}
+                                    onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                                >
+                                    <option value="Brand Awareness">Brand Awareness</option>
+                                    <option value="Engagement">Engagement</option>
+                                    <option value="Lead Generation">Lead Generation</option>
+                                    <option value="Conversion">Conversion</option>
+                                    <option value="Informative">Informative</option>
+                                </select>
+                            </div>
+                        </div>
+                    </GlassCard>
                 </div>
+
 
                 {/* C. Advanced Options */}
                 <div id="advanced-config" style={{ marginTop: '2rem' }}>
