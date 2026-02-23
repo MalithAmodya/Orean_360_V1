@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Sparkles, Upload, X, FileText, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, Upload, X, FileText, Image as ImageIcon, ChevronDown, Sliders } from 'lucide-react';
+
 import GlassCard from './components/ui/GlassCard';
 import './LeftPanel.css';
 
 const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
     const [isDragging, setIsDragging] = useState(false);
+    const [showAdvanced, setShowAdvanced] = useState(false);
 
     const handleTextChange = (e) => {
         const value = e.target.value;
@@ -12,6 +14,14 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
             setFormData({ ...formData, keyPoints: value });
         }
     };
+
+    const handleAdvancedChange = (key, value) => {
+        setFormData({
+            ...formData,
+            advanced: { ...formData.advanced, [key]: value }
+        });
+    };
+
 
     const handleFileChange = (file) => {
         if (file) {
@@ -182,8 +192,81 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
 
                 {/* C. Advanced Options */}
                 <div id="advanced-config" style={{ marginTop: '2rem' }}>
-                    {/* Placeholder for Step 16 */}
+                    <GlassCard>
+                        <button
+                            className="advanced-toggle"
+                            onClick={() => setShowAdvanced(!showAdvanced)}
+                            style={{ width: '100%', border: 'none', background: 'none', padding: 0 }}
+                        >
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                    <Sliders size={18} className={showAdvanced ? 'text-neon-blue' : ''} style={{ color: showAdvanced ? 'var(--geo-neon-blue)' : 'var(--geo-text-secondary)' }} />
+                                    <span style={{ fontWeight: 600, color: 'var(--geo-text-primary)' }}>Advanced Configuration</span>
+                                </div>
+                                <ChevronDown size={18} className={`toggle-icon ${showAdvanced ? 'open' : ''}`} />
+                            </div>
+                        </button>
+
+                        {showAdvanced && (
+                            <div className="advanced-content">
+                                <div className="range-input-group">
+                                    <div className="range-label">
+                                        <span>Keyword Density</span>
+                                        <span>{formData.advanced.density}%</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        className="geo-range"
+                                        value={formData.advanced.density}
+                                        onChange={(e) => handleAdvancedChange('density', e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="range-input-group" style={{ marginTop: '1.5rem' }}>
+                                    <div className="range-label">
+                                        <span>Creativity Level</span>
+                                        <span>{formData.advanced.creativity}%</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        className="geo-range"
+                                        value={formData.advanced.creativity}
+                                        onChange={(e) => handleAdvancedChange('creativity', e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="settings-grid" style={{ marginTop: '1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                                    <div className="input-group" style={{ marginBottom: 0 }}>
+                                        <label className="input-label">Target Audience</label>
+                                        <select
+                                            className="geo-select"
+                                            value={formData.advanced.audience}
+                                            onChange={(e) => handleAdvancedChange('audience', e.target.value)}
+                                        >
+                                            <option value="General">General</option>
+                                            <option value="Technical">Technical</option>
+                                            <option value="Executive">Executive</option>
+                                            <option value="Creative">Creative</option>
+                                        </select>
+                                    </div>
+                                    <div className="input-group" style={{ marginBottom: 0 }}>
+                                        <label className="input-label">Content Length</label>
+                                        <select
+                                            className="geo-select"
+                                            value={formData.advanced.length}
+                                            onChange={(e) => handleAdvancedChange('length', e.target.value)}
+                                        >
+                                            <option value="Short">Short</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Long">Long</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </GlassCard>
                 </div>
+
             </div>
 
             {/* D. Run Action Area */}
