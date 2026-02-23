@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles, Upload, X, FileText, Image as ImageIcon, ChevronDown, Sliders } from 'lucide-react';
 
 import GlassCard from './components/ui/GlassCard';
+import RunButton from './components/ui/RunButton';
 import './LeftPanel.css';
 
 const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
@@ -270,9 +271,14 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
             </div>
 
             {/* D. Run Action Area */}
-            <div className="action-area" style={{ marginTop: 'auto' }}>
-                {/* Placeholder for Step 18 */}
+            <div className="action-area" style={{ marginTop: 'auto', paddingBottom: '1rem' }}>
+                <RunButton
+                    onClick={onRun}
+                    isAnalyzing={isAnalyzing}
+                    disabled={!formData.keyPoints.trim() && !formData.attachedFile}
+                />
             </div>
+
         </aside>
     );
 };
