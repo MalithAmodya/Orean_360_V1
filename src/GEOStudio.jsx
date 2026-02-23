@@ -10,7 +10,9 @@ const GEOStudio = () => {
     tone: 'Professional',
     goal: 'Engagement',
     tags: [],
+    attachedFile: null,
     advanced: {
+
       density: 50,
       creativity: 50,
       audience: 'General',

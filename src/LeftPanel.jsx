@@ -1,14 +1,48 @@
-import React from 'react';
-import { Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, Upload, X, FileText, Image as ImageIcon } from 'lucide-react';
 import GlassCard from './components/ui/GlassCard';
 import './LeftPanel.css';
 
 const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
+    const [isDragging, setIsDragging] = useState(false);
+
     const handleTextChange = (e) => {
         const value = e.target.value;
         if (value.length <= 1000) {
             setFormData({ ...formData, keyPoints: value });
         }
+    };
+
+    const handleFileChange = (file) => {
+        if (file) {
+            // Basic validation
+            const validTypes = ['image/jpeg', 'image/png', 'application/pdf', 'text/plain'];
+            if (validTypes.includes(file.type)) {
+                setFormData({ ...formData, attachedFile: file });
+            } else {
+                alert('Please upload a valid file (Image, PDF, or TXT)');
+            }
+        }
+    };
+
+    const onDragOver = (e) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const onDragLeave = () => {
+        setIsDragging(false);
+    };
+
+    const onDrop = (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        const file = e.dataTransfer.files[0];
+        handleFileChange(file);
+    };
+
+    const removeFile = () => {
+        setFormData({ ...formData, attachedFile: null });
     };
 
     return (
@@ -20,8 +54,53 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing }) => {
                         Generative Engine Optimization
                     </h3>
 
-                    <GlassCard>
+                    <GlassCard style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {/* Attached Media Upload */}
                         <div className="input-group">
+                            <label className="input-label">Attached Media</label>
+                            {!formData.attachedFile ? (
+                                <div
+                                    className={`upload-dropzone ${isDragging ? 'dragging' : ''}`}
+                                    onDragOver={onDragOver}
+                                    onDragLeave={onDragLeave}
+                                    onDrop={onDrop}
+                                >
+                                    <input
+                                        type="file"
+                                        id="file-upload"
+                                        hidden
+                                        onChange={(e) => handleFileChange(e.target.files[0])}
+                                    />
+                                    <label htmlFor="file-upload" className="upload-content">
+                                        <Upload size={24} className="upload-icon" />
+                                        <div className="upload-text">
+                                            <span className="primary-text">Click to upload or drag & drop</span>
+                                            <span className="secondary-text">PDF, TXT, PNG, or JPG (max 10MB)</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            ) : (
+                                <div className="file-preview-card">
+                                    <div className="file-info">
+                                        {formData.attachedFile.type.startsWith('image/') ? (
+                                            <ImageIcon size={20} className="file-icon" />
+                                        ) : (
+                                            <FileText size={20} className="file-icon" />
+                                        )}
+                                        <div className="file-details">
+                                            <span className="file-name">{formData.attachedFile.name}</span>
+                                            <span className="file-size">{(formData.attachedFile.size / 1024).toFixed(1)} KB</span>
+                                        </div>
+                                    </div>
+                                    <button className="remove-file-btn" onClick={removeFile}>
+                                        <X size={16} />
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Key Points Textarea */}
+                        <div className="input-group" style={{ marginBottom: 0 }}>
                             <label className="input-label">
                                 Key Points
                                 <button className="ai-icon-btn" title="AI Suggestion">
