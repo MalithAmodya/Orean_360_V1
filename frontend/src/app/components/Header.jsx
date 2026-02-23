@@ -1,4 +1,4 @@
-import { Mail, Bell, ChevronLeft } from "lucide-react";
+import { Mail, Bell, ChevronLeft, HelpCircle } from "lucide-react";
 
 export default function Header({ userAvatar, breadcrumbs, onBack }) {
     const handleBack = () => {
@@ -20,10 +20,13 @@ export default function Header({ userAvatar, breadcrumbs, onBack }) {
                 </div>
             </div>
             <div className="header-actions">
-                <button className="icon-btn">
+                <button className="icon-btn" aria-label="Help">
+                    <HelpCircle size={24} />
+                </button>
+                <button className="icon-btn" aria-label="Messages">
                     <Mail size={20} />
                 </button>
-                <button className="icon-btn">
+                <button className="icon-btn" aria-label="Notifications">
                     <Bell size={20} />
                 </button>
                 <img src={userAvatar || "/avatar-placeholder.png"} alt="User" className="user-avatar-sm" />
