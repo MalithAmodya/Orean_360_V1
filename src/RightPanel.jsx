@@ -68,14 +68,12 @@ const RightPanel = ({ results, isAnalyzing }) => {
                         <BreakdownMetrics metrics={currentVariation.breakdown} />
 
                         <div className="action-buttons">
-                            <button className="icon-btn" onClick={() => handleCopy(currentVariation.content)} title="Copy to Clipboard">
-                                {copied ? <Check size={18} color="var(--geo-neon-blue)" /> : <Copy size={18} />}
+                            <button className="text-btn secondary-btn" onClick={() => console.log('Edit Caption Clicked')}>
+                                Edit Caption
                             </button>
-                            <button className="icon-btn" title="Good Result">
-                                <ThumbsUp size={18} />
-                            </button>
-                            <button className="icon-btn" title="Bad Result">
-                                <ThumbsDown size={18} />
+                            <button className="text-btn primary-btn" onClick={() => handleCopy(currentVariation.content)}>
+                                {copied ? <Check size={18} style={{ marginRight: '8px' }} /> : null}
+                                {copied ? 'Copied!' : 'Use this Caption'}
                             </button>
                         </div>
                     </GlassCard>

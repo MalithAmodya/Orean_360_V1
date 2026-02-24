@@ -191,10 +191,83 @@
     transition: all 0.3s ease;
 }
 
+.geo-select option {
+    background: #0f172a;
+    color: var(--geo-text-primary);
+}
+
 .geo-select:focus {
     outline: none;
     border-color: var(--geo-neon-blue);
     box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.1);
+}
+
+.tags-input-container {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--geo-glass-border);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: text;
+    min-height: 80px;
+}
+
+.tags-input-container:focus-within {
+    border-color: var(--geo-neon-blue);
+    box-shadow: 0 0 0 2px rgba(0, 210, 255, 0.1);
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.geo-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--geo-text-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.tag-remove-btn {
+    background: none;
+    border: none;
+    color: var(--geo-text-secondary);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.tag-remove-btn:hover {
+    color: var(--geo-neon-blue);
+}
+
+.tag-input {
+    background: transparent;
+    border: none;
+    color: var(--geo-text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+    padding: 0;
+    text-align: left;
+}
+
+.tag-input::placeholder {
+    color: var(--geo-text-secondary);
 }
 
 .settings-grid {

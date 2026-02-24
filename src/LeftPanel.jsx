@@ -162,25 +162,28 @@ const LeftPanel = ({ formData, setFormData, onRun, isAnalyzing, loadingText }) =
                         <div style={{ maxWidth: '800px', margin: '0 auto', width: '100%' }}>
                             <div className="settings-grid">
                                 <div className="input-group" style={{ gridColumn: 'span 2' }}>
-                                    <label className="input-label">Target Keywords (Max 5)</label>
-                                    <div className="tags-input-container">
-                                        <div className="tags-wrapper">
-                                            {formData.tags.map(tag => (
-                                                <span key={tag} className="geo-tag">
-                                                    {tag}
-                                                    <button type="button" onClick={() => removeTag(tag)} className="tag-remove-btn">
-                                                        <X size={12} />
-                                                    </button>
-                                                </span>
-                                            ))}
-                                            <input
-                                                type="text"
-                                                className="tag-input"
-                                                placeholder={formData.tags.length < 5 ? "Type keyword and press Enter..." : "Max 5 keywords reached"}
-                                                onKeyDown={handleKeyDown}
-                                                disabled={formData.tags.length >= 5}
-                                            />
-                                        </div>
+                                    <label className="input-label">Tags / Keywords (Max 5)</label>
+                                    <div className="tags-input-container" onClick={() => document.getElementById('tag-input')?.focus()}>
+                                        {formData.tags.length > 0 && (
+                                            <div className="tags-list">
+                                                {formData.tags.map(tag => (
+                                                    <span key={tag} className="geo-tag">
+                                                        {tag}
+                                                        <button type="button" onClick={() => removeTag(tag)} className="tag-remove-btn">
+                                                            <X size={12} />
+                                                        </button>
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                        <input
+                                            id="tag-input"
+                                            type="text"
+                                            className="tag-input"
+                                            placeholder={formData.tags.length < 5 ? "Type keyword " : "Max 5 keywords reached"}
+                                            onKeyDown={handleKeyDown}
+                                            disabled={formData.tags.length >= 5}
+                                        />
                                     </div>
                                 </div>
 
