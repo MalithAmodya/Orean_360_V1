@@ -1,10 +1,8 @@
-/* GEO Studio Scoped Styles */
 :root {
   --geo-bg: #0a0e14;
   --geo-card-bg: rgba(255, 255, 255, 0.05);
   --geo-border: rgba(255, 255, 255, 0.1);
   --geo-accent: #3b82f6;
-  /* Blue accent */
   --geo-text-primary: #ffffff;
   --geo-text-secondary: #94a3b8;
   --geo-neon-blue: #00d2ff;
@@ -19,7 +17,6 @@
   color: var(--geo-text-primary);
   font-family: var(--geo-font-family);
   padding: 3rem 2rem;
-  /* Increased vertical padding for breathing room */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -44,7 +41,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Glassmorphism Refinement for Step 8 */
 :root {
   --geo-glass-bg: rgba(15, 23, 42, 0.65);
   --geo-glass-border: rgba(255, 255, 255, 0.08);
@@ -55,16 +51,35 @@
 
 .geo-studio-main {
   display: grid;
-  /* Dynamic grid that adapts to screen size while maintaining balance */
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  flex: 1;
   gap: 2.5rem;
+  width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 1rem;
+}
+
+.geo-studio-main.layout-single {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  min-height: calc(100vh - 200px);
+  width: 100%;
+}
+
+.geo-studio-main.layout-single>.slide-up {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.geo-studio-main.layout-single .left-panel {
+  flex: 1;
+}
+
+.geo-studio-main.layout-split {
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   align-items: start;
 }
 
-/* Glassmorphism Fallback */
 @supports not (backdrop-filter: blur(12px)) {
   .glass-effect {
     background: #1e293b;
@@ -109,7 +124,6 @@
   }
 }
 
-/* Step 30: Final Polish Animations */
 .fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }

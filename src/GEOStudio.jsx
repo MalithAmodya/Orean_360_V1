@@ -31,7 +31,6 @@ const GEOStudio = () => {
   const [loadingText, setLoadingText] = useState(loadingMessages[0]);
   const [results, setResults] = useState(null);
 
-  // Animate loading messages (Step 19)
   useEffect(() => {
     let interval;
     if (isAnalyzing) {
@@ -76,16 +75,17 @@ const GEOStudio = () => {
     }, 3000);
 
   };
+  const hasStarted = results !== null;
 
   return (
     <div className="geo-studio-container">
       <header className="geo-studio-header">
         <h1>GEO Studio</h1>
-        <p style={{ color: 'var(--geo-text-secondary)', marginTop: '0.5rem' }}>
+        <p style={{ color: 'var(--geo-text-secondary)', margin: '0.5rem 0 0 0' }}>
           Input & Configuration for Generative Engine Optimization
         </p>
       </header>
-      <main className="geo-studio-main">
+      <main className={`geo-studio-main ${hasStarted ? 'layout-split' : 'layout-single'}`} style={{ transition: 'all 0.5s ease-in-out' }}>
 
         <div className="slide-up">
           <LeftPanel
@@ -95,12 +95,15 @@ const GEOStudio = () => {
             isAnalyzing={isAnalyzing}
           />
         </div>
-        <div className="slide-up" style={{ animationDelay: '0.2s' }}>
-          <RightPanel
-            results={results}
-            isAnalyzing={isAnalyzing}
-          />
-        </div>
+
+        {results && (
+          <div className="slide-up" style={{ animationDelay: '0.2s' }}>
+            <RightPanel
+              results={results}
+              isAnalyzing={false}
+            />
+          </div>
+        )}
 
       </main>
     </div>
