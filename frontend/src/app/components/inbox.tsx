@@ -12,6 +12,7 @@ const chats = [
 export default function Inbox() {
   const [messages, setMessages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [selectedChat, setSelectedChat] = useState<any>(null);
 
   const sendMessage = () => {
     if (inputValue.trim() === "") return;
@@ -36,10 +37,15 @@ export default function Inbox() {
 
         <div className="chat-list">
           {chats.map((chat) => (
-            <div key={chat.id} className="chat-item">
-              <h4>{chat.name}</h4>
-              <p>{chat.lastMessage}</p>
-            </div>
+            <div
+          key={chat.id}
+          className="chat-item"
+          onClick={() => setSelectedChat(chat)}
+        >
+          <h4>{chat.name}</h4>
+          <p>{chat.lastMessage}</p>
+        </div>
+
           ))}
         </div>
       </div>
@@ -47,7 +53,7 @@ export default function Inbox() {
       {/* Chat Area */}
       <div className="chat-area">
         <div className="chat-header">
-          <h3>User Name</h3>
+          <h3>{selectedChat ? selectedChat.name : "Select a chat"}</h3>
           <div className="actions">
             <button>Mark as Read</button>
             <button>Assign To</button>
