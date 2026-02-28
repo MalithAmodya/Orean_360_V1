@@ -39,7 +39,7 @@ export default function Inbox() {
           {chats.map((chat) => (
             <div
           key={chat.id}
-          className="chat-item"
+          className={`chat-item ${selectedChat?.id === chat.id ? "active" : ""}`}
           onClick={() => setSelectedChat(chat)}
         >
           <h4>{chat.name}</h4>
