@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import "./inbox.css";
 
 const chats = [
-  { id: 1, name: "Amasha De Silva", message: "Full name: ..." },
-  { id: 2, name: "Nethma Perera", message: "Phone number: ..." },
-  { id: 3, name: "Menasha Rajapaksha", message: "Sent an attachment" }
+  { id: 1, name: "Thilina", lastMessage: "Hello there!" },
+  { id: 2, name: "Nadeesha", lastMessage: "Can we discuss?" },
+  { id: 3, name: "Kasun", lastMessage: "Review updated." },
 ];
 
 export default function Inbox() {
@@ -38,7 +38,7 @@ export default function Inbox() {
           {chats.map((chat) => (
             <div key={chat.id} className="chat-item">
               <h4>{chat.name}</h4>
-              <p>{chat.message}</p>
+              <p>{chat.lastMessage}</p>
             </div>
           ))}
         </div>
