@@ -3,16 +3,31 @@
 import React, { useState } from "react";
 import "./inbox.css";
 
-const chats = [
-  { id: 1, name: "Thilina", lastMessage: "Hello there!" },
-  { id: 2, name: "Nadeesha", lastMessage: "Can we discuss?" },
-  { id: 3, name: "Kasun", lastMessage: "Review updated." },
+const initialChats = [
+  {
+    id: 1,
+    name: "Thilina",
+    messages: ["Hello there!", "Are you available today?"],
+  },
+  {
+    id: 2,
+    name: "Nadeesha",
+    messages: ["Can we discuss?", "About the project update."],
+  },
+  {
+    id: 3,
+    name: "Kasun",
+    messages: ["Review updated.", "Please check GitHub."],
+  },
 ];
 
 export default function Inbox() {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  const [selectedChat, setSelectedChat] = useState<any>(null);
+const [chats, setChats] = useState(initialChats);
+const [inputValue, setInputValue] = useState("");
+const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
+
+const selectedChat =
+  chats.find((chat) => chat.id === selectedChatId) || null;
 
   const sendMessage = () => {
     if (inputValue.trim() === "") return;
@@ -39,11 +54,11 @@ export default function Inbox() {
           {chats.map((chat) => (
             <div
           key={chat.id}
-          className={`chat-item ${selectedChat?.id === chat.id ? "active" : ""}`}
-          onClick={() => setSelectedChat(chat)}
+          className={`chat-item ${selectedChatId === chat.id ? "active" : ""}`}
+          onClick={() => setSelectedChatId(chat.id)}
         >
           <h4>{chat.name}</h4>
-          <p>{chat.lastMessage}</p>
+          <p>{chat.messages[chat.messages.length - 1]}</p>
         </div>
 
           ))}
@@ -61,9 +76,13 @@ export default function Inbox() {
         </div>
 
         <div className="messages">
-          {messages.map((msg, index) => (
-            <p key={index}>{msg}</p>
-          ))}
+          {selectedChat ? (
+            selectedChat.messages.map((msg: string, index: number) => (
+              <p key={index}>{msg}</p>
+            ))
+          ) : (
+            <p>Select a chat to view messages.</p>
+          )}
         </div>
 
         <div className="message-input">
