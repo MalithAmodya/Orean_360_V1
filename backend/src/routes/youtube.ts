@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authMiddleware } from "../controllers/auth";
+import { authMiddleware } from "../middleware/authMiddleware";
 import {
   getYouTubeAuthUrl,
   youtubeCallback,

@@ -66,7 +66,6 @@ app.use("/api/whatsapp", whatsappRoutes);
 app.use("/api/linkedin", linkedinRoutes);
 app.use("/api/tiktok", tiktokRoutes);
 
-app.get("/api/health", async (req, res) => {
 // ─── Nested Route: Get posts by campaign ────────────────────────────────
 const campaignPostsSchema = z.object({
   params: z.object({ campaignId: z.string().uuid("Invalid campaign ID") }),
