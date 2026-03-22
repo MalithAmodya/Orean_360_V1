@@ -20,7 +20,7 @@ const mockResponse = (): Partial<Response> => {
 
 const mockNext: NextFunction = jest.fn();
 
-describe("Auth Middleware – JWT Token Verification", () => {
+describe("Auth Middleware  JWT Token Verification", () => {
   // ── Successful Authentication ────────────────────────────────────────
   it("should call next() with a valid JWT token", () => {
     const payload = { id: 1, email: "malith@orean360.com", role: "admin" };
